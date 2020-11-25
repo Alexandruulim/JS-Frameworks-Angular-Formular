@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="validator.js" module defer></script>
+    <script src="script.js" defer></script>
+    <title>Formular [Angular]</title>
+  </head>
+  <body>
+    <div ng-app="app" ng-controller="formCtrl">
+      <main>
+        <h1>Formularul Angajării</h1>
+        <form ng-submit="handleSubmit()">
+          <div class="input">
+            <label for="first-name">Nume</label>
+            <span class="error" ng-if="formErrors.firstName">
+              {{formErrors.firstName}}
+            </span>
+            <input
+              type="text"
+              name="firstName"
+              id="first-name"
+              placeholder="Igor"
+              required
+              ng-model="firstName"
+            />
+          </div>
+          <div class="input">
+            <label for="last-name">Prenume</label>
+            <span class="error" ng-if="formErrors.lastName">
+              {{formErrors.lastName}}
+            </span>
+            <input
+              type="text"
+              name="lastName"
+              id="last-name"
+              placeholder="Sirbu"
+              required
+              ng-model="lastName"
+            />
+          </div>
+          <div class="input">
+            <label for="birth-date" ng-model="birthDate">Data nașterii</label>
+            <span class="error" ng-if="formErrors.birthDate">
+              {{formErrors.birthDate}}
+            </span>
+            <input
+              type="date"
+              name="birthDate"
+              id="birth-date"
+              ng-model="birthDate"
+            />
+          </div>
+          <div class="input">
+            <!-- disable with angular -->
+            <label>Genul</label>
+            <div class="genders">
+              <span class="error" ng-if="formErrors.gender">
+                {{formErrors.gender}}
+              </span>
+              <label for="gender-male">
+                <input
+                  type="checkbox"
+                  name="gender"
+                  id="gender-male"
+                  value="Masculin"
+                  ng-model="isGenderMale"
+                  ng-disabled="isGenderFemale"
+                />
+                Masculin
+              </label>
+              <label for="gender-female">
+                <input
+                  type="checkbox"
+                  name="gender"
+                  id="gender-female"
+                  value="Feminin"
+                  ng-model="isGenderFemale"
+                  ng-disabled="isGenderMale"
+                />
+                Feminin
+              </label>
+            </div>
+          </div>
+          <div class="input">
+            <label for="">Facultatea</label>
+            <div class="faculties">
+              <label for="fac-chimie">
+                <input
+                  type="radio"
+                  id="fac-chimie"
+                  value="Chimie"
+                  ng-model="faculty"
+                  ng-change="handleFacultyChange('Chimie')"
+                  checked
+                />
+                Chimie
+              </label>
+              <label for="fac-informatica">
+                <input
+                  type="radio"
+                  id="fac-informatica"
+                  value="Informatica"
+                  ng-model="faculty"
+                  ng-change="handleFacultyChange('Informatica')"
+                />
+                Informatica
+              </label>
+              <label for="fac-matematica">
+                <input
+                  type="radio"
+                  id="fac-matematica"
+                  value="Matematica"
+                  ng-model="faculty"
+                  ng-change="handleFacultyChange('Matematica')"
+                />
+                Matematica
+              </label>
+              <label for="fac-biologie">
+                <input
+                  type="radio"
+                  id="fac-biologie"
+                  value="Biologie"
+                  ng-model="faculty"
+                  ng-change="handleFacultyChange('Biologie')"
+                />
+                Biologie
+              </label>
+            </div>
+          </div>
+          <div class="input">
+            <label for="teaching-subject">Obiectul predării</label>
+            <select
+              name="teachingSubject"
+              id="teaching-subject"
+              ng-model="teachingSubject"
+              required
+            >
+              <option
+                ng-if="faculty === 'Chimie'"
+                ng-repeat="obj in chemistryObjects"
+                value="{{obj}}"
+              >
+                {{obj}}
+              </option>
+              <option
+                ng-if="faculty === 'Informatica'"
+                ng-repeat="obj in computerScienceObjects"
+                value="{{obj}}"
+              >
+                {{obj}}
+              </option>
+              <option
+                ng-if="faculty === 'Matematica'"
+                ng-repeat="obj in mathObjects"
+                value="{{obj}}"
+              >
+                {{obj}}
+              </option>
+              <option
+                ng-if="faculty === 'Biologie'"
+                ng-repeat="obj in biologyObjects"
+                value="{{obj}}"
+              >
+                {{obj}}
+              </option>
+            </select>
+          </div>
+          <div class="input">
+            <label for="salary">Salariu dorit</label>
+            <div class="salary-input">
+              <span class="error" ng-if="formErrors.salary">
+                {{formErrors.salary}}
+              </span>
+              <input
+                type="text"
+                name="salary"
+                id="salary"
+                placeholder="3999"
+                ng-model="salary"
+                required
+              />
+              <label>MDL</label>
+            </div>
+          </div>
+          <div class="input form-options">
+            <span class="error" ng-if="formErrors.hasErrors">
+              Corectați eroriile pentru a continua
+            </span>
+            <button class="submit-btn" type="submit">Confirmă</button>
+            <button class="reset-btn" type="reset" ng-click="handleReset()">
+              Anulează
+            </button>
+          </div>
+        </form>
+      </main>
+      <section ng-if="formResult" class="result-section">
+        <h2>Informația din Formular</h2>
+        <ul class="resultList">
+          <li ng-repeat="r in formResult" class="result" ng-if="r">{{r}}</li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul,
+ol {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+/* Remove list styles on ul and ol elements */
+ul,
+ol {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input[type='text'],
+input[type='date'],
+select {
+  width: 360px;
+  height: 36px;
+  padding: 6px;
+}
+
+button {
+  min-width: 100px;
+  height: 36px;
+}
+
+body {
+  background-color: #262626;
+  color: #fff;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+form,
+.resultList {
+  padding-top: 20px;
+  display: grid;
+  row-gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+}
+
+.input > label {
+  font-size: 20px;
+}
+
+.genders {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.faculties {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.salary-input {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.salary-input input {
+  width: 100%;
+}
+
+.form-options {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 16px;
+}
+
+.error {
+  padding-bottom: 4px;
+  grid-column: span 2;
+  font-size: 14px;
+  color: rgb(255 110 110);
+}
+
+.result-section {
+  padding-bottom: 20px;
+}
+
+.resultList {
+  row-gap: 14px;
+  max-width: 500px;
+}
+
+.result {
+  padding: 0 8px;
+  border-bottom: 1px solid rgb(128 128 128);
+}
